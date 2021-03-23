@@ -2,4 +2,4 @@ config:
   value: 20
 
 server: 
-  name: config-dev2
+  name: config-dev21
