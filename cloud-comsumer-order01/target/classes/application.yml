@@ -1,0 +1,10 @@
+server:
+  port: 80
+spring:
+  application:
+    name: cloud-com.cloudtest.comsumer-order01
+  zipkin:
+    base-url: http://localhost:9411
+  sleuth:
+    sampler:
+      probability: 1

@@ -1,0 +1,17 @@
+server:
+  port: 9001
+spring:
+  application:
+    name: alibaba-nacos-provider
+  cloud:
+    nacos:
+      discovery:
+        enabled: true
+        service: ${spring.application.name}
+        server-addr: localhost:8848  #配置nacos地址
+
+management: #暴露监控端点
+  endpoints:
+    web:
+      exposure:
+        include: "*"

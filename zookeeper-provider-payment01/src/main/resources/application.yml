@@ -1,0 +1,27 @@
+server:
+  port: 8001
+spring:
+  application:
+    name: zookeeper-provider-payment  #注册到zookeepr服务名
+  datasource:
+    #当前数据源操作类型
+    type: com.alibaba.druid.pool.DruidDataSource
+    #mysql驱动包
+    driver-class-name: org.gjt.mm.mysql.Driver
+    url: jdbc:mysql://192.168.200.144:3306/cloud-test?useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root
+    password: 123456
+
+  cloud:
+    zookeeper:
+      connect-string: 192.168.200.140:2181,192.168.200.141:2181,192.168.200.142:2181
+      discovery:
+        root: provider-payment  #默认是services
+        enabled: true
+        instance-host: 10.10.30.254
+
+mybatis:
+  mapperLocations: classpath:mapper/*.xml
+  #所有entity别名类所在包
+  type-aliases-package: com.cloudtest.entity
+

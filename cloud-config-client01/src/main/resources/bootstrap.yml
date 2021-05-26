@@ -1,0 +1,23 @@
+server:
+  port: 3355
+spring:
+  application:
+    name: cloud-config-client01
+  cloud:
+    config: #Config客户端
+      label: master  #分支名称
+      name: config  #配置文件名称前缀
+      profile: dev  #读取后缀名称，上述3个综合：master分支上application-dev.yml的配置文件被读取http://localhost:3344/master/application-dev.yml
+      uri: http://localhost:3344  #配置中心地址
+
+eureka:
+  client:
+    service-url: #设置与Eureka server的地址查询服务和注册服务都需要依赖这个地址
+      defaultZone: http://localhost:7001/eureka/ #单机版
+      #      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka  #集群版
+
+management: #暴露监控端点
+  endpoints:
+    web:
+      exposure:
+        include: "*"

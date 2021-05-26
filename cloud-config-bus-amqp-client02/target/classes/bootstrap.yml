@@ -1,0 +1,39 @@
+server:
+  port: 3366
+spring:
+  application:
+    name: cloud-config-client02
+  cloud:
+    config: #Config客户端
+      label: master  #分支名称
+      name: config  #配置文件名称前缀
+      profile: dev  #读取后缀名称，上述3个综合：master分支上application-dev.yml的配置文件被读取http://localhost:3344/master/application-dev.yml
+      uri: http://localhost:3344  #配置中心地址
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+eureka:
+  client:
+    #是否将自己注册到注册中心, 默认true
+    register-with-eureka: true
+    #是否从EurekaServer抓取已有的注册信息,单机无所谓,集群必须设置为true配合ribbon使用负载均衡
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:7001/eureka  #单机版
+  #      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka  #集群版
+  instance:
+    instance-id: ${spring.application.name}
+    #    #访问路径可以显示IP地址
+    prefer-ip-address: true
+    #Eureka客户端向服务端发送心跳的时间间隔.单位为秒(默认30 秒)
+    lease-renewal-interval-in-seconds: 1
+    #Eureka服务端在收到最后一次心跳等待时间上限.单位为秒(默认90 秒),超时将剔除服务
+    lease-expiration-duration-in-seconds: 2
+management: #暴露监控端点
+  endpoints:
+    web:
+      exposure:
+        include: "*"

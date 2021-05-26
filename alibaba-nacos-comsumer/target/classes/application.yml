@@ -1,0 +1,18 @@
+server:
+  port: 81
+spring:
+  application:
+    name: alibaba-nacos-comsumer
+  cloud:
+    nacos:
+      discovery:
+        enabled: true
+        service: ${spring.application.name}
+        server-addr: localhost:8848  #配置nacos地
+service-url: #自定义提供方服务参数
+  nacos-user-server: http://alibaba-nacos-provider
+management: #暴露监控端点
+  endpoints:
+    web:
+      exposure:
+        include: "*"

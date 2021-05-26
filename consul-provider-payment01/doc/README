@@ -1,0 +1,4 @@
+1.下载consul-1.6.1 并安装
+2. consul -version
+3. 使用开发模式启动： consul agent -dev
+4.通过页面访问consul首页：http://localhost:8500/

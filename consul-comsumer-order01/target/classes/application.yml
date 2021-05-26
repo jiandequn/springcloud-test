@@ -1,0 +1,13 @@
+server:
+  port: 80
+spring:
+  application:
+    name: consul-comsumer-order #注册到zookeepr服务名
+  cloud:
+    consul:
+      discovery:
+        enabled: true
+        service-name: ${spring.application.name}
+        hostname: 10.10.30.254
+      host: localhost
+      port: 8500

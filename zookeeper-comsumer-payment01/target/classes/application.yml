@@ -1,0 +1,12 @@
+server:
+  port: 80
+spring:
+  application:
+    name: cloud-comsumer-order #注册到zookeepr服务名
+  cloud:
+    zookeeper:
+      connect-string: 192.168.200.140:2181,192.168.200.141:2181,192.168.200.142:2181
+      discovery:
+        root: provider-payment  #默认是services
+        enabled: true
+        instance-host: 10.10.30.254

@@ -1,0 +1,29 @@
+server:
+  port: 8001
+spring:
+  application:
+    name: consul-provider-payment  #注册到zookeepr服务名
+  datasource:
+    #当前数据源操作类型
+    type: com.alibaba.druid.pool.DruidDataSource
+    #mysql驱动包
+    driver-class-name: org.gjt.mm.mysql.Driver
+    url: jdbc:mysql://192.168.200.144:3306/cloud-test?useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root
+    password: 123456
+
+  cloud:
+    consul:
+      discovery:
+        enabled: true
+        service-name: ${spring.application.name}
+        hostname: 10.10.30.254
+      host: localhost
+      port: 8500
+
+
+mybatis:
+  mapperLocations: classpath:mapper/*.xml
+  #所有entity别名类所在包
+  type-aliases-package: com.cloudtest.entity
+
