@@ -11,7 +11,7 @@ spring:
         server-addr: localhost:8848  #配置nacos地址
     sentinel:
       transport:
-        dashboard: localhost:8080
+        dashboard: localhost:8081
         port: 8719 #默认8719，如果被占用，默认依次+1扫描，直到找到未占用的端口为止
 
 management: #暴露监控端点

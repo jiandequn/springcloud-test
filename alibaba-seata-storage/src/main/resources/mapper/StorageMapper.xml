@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.alibaba.seata.storage.dao.StorageDao">
+    <insert id="insert" parameterType="com.alibaba.seata.storage.entity.StorageEntity" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into t_order(user_id,product_id,count,money,status)
+        values (#{userId},#{productId},#{count},#{money},#{status});
+    </insert>
+    <update id="decrease" >
+            update t_storage
+        set used =used + #{count},residue=#{count}
+        where product_id=#{productId};
+    </update>
+    <resultMap id="BaseResultMap" type="com.alibaba.seata.storage.entity.StorageEntity">
+        <id column="id" property="id" jdbcType="BIGINT"></id>
+        <id column="product_id" property="productId" jdbcType="BIGINT"></id>
+        <id column="count" property="count" jdbcType="BIGINT"></id>
+        <id column="money" property="money" jdbcType="BIGINT"></id>
+        <id column="status" property="status" jdbcType="BIGINT"></id>
+    </resultMap>
+
+    <select id="getPaymentById" parameterType="Long" resultMap="BaseResultMap">
+        select *
+        from t_order
+        where user_id = #{userId};
+    </select>
+
+</mapper>
